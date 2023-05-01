@@ -1,12 +1,17 @@
 import React from 'react';
 
 const Contacts = props => {
-  const { contacts } = props;
+  const { contacts, filter } = props;
+  const normalizeFilter = filter.toLowerCase();
+  const visibleContacts = contacts.filter(({ dataName }) =>
+    dataName.toLowerCase().includes(normalizeFilter)
+  );
+  console.log(visibleContacts);
   return (
     <ul>
-      {contacts.map(({ name, id }) => (
+      {visibleContacts.map(({ id, dataName, dataNumber }) => (
         <li key={id} id={id}>
-          {name}
+          {dataName}: {dataNumber}
         </li>
       ))}
     </ul>

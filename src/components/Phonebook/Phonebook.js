@@ -9,9 +9,15 @@ class Phonebook extends React.Component {
 
   handleSubmitName = evt => {
     evt.preventDefault();
+
+    const { name, number } = evt.target;
+
+    const dataName = name.value;
+    const dataNumber = number.value;
+
     const id = nanoid();
-    const { name } = this.state;
-    let object = { name, id };
+
+    let object = { id, dataName, dataNumber };
     this.props.onSubmit(object);
   };
 
@@ -19,6 +25,7 @@ class Phonebook extends React.Component {
     const { name, value } = evt.target;
     this.setState({ [name]: value });
   };
+
   render() {
     return (
       <form onSubmit={this.handleSubmitName}>
@@ -37,10 +44,13 @@ class Phonebook extends React.Component {
         <label>
           Number
           <input
-            type="text"
-            placeholder="Enter number"
-            // value={}
-            // onChange={this.handleChange}
+            type="tel"
+            placeholder="123-45-67"
+            name="number"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            onChange={this.handleChangeName}
+            required
           />
         </label>
         <button type="submit">Add contact</button>
