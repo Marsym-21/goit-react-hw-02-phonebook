@@ -1,4 +1,5 @@
 import React from 'react';
+import css from './Phonebook.module.css';
 import { nanoid } from 'nanoid';
 
 class Phonebook extends React.Component {
@@ -35,6 +36,8 @@ class Phonebook extends React.Component {
     });
     const object = { id, dataName, dataNumber };
     this.props.onSubmit(object);
+    name.value = ' ';
+    number.value = ' ';
   };
 
   handleChangeName = evt => {
@@ -45,10 +48,11 @@ class Phonebook extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmitName}>
-        <label>
+      <form className={css.form} onSubmit={this.handleSubmitName}>
+        <label className={css.label}>
           Name
           <input
+            className={css.input}
             type="text"
             placeholder="Enter full name"
             name="name"
@@ -58,9 +62,10 @@ class Phonebook extends React.Component {
             required
           />
         </label>
-        <label>
+        <label className={css.label}>
           Number
           <input
+            className={css.input}
             type="tel"
             placeholder="123-45-67"
             name="number"
@@ -70,7 +75,9 @@ class Phonebook extends React.Component {
             required
           />
         </label>
-        <button type="submit">Add contact</button>
+        <button className={css.form_btn} type="submit">
+          Add contact
+        </button>
       </form>
     );
   }

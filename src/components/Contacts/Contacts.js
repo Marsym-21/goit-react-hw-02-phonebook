@@ -1,5 +1,5 @@
 import React from 'react';
-
+import css from './Contacts.module.css';
 const Contacts = props => {
   const { contacts, filter, onClick } = props;
   const normalizeFilter = filter.toLowerCase();
@@ -7,11 +7,16 @@ const Contacts = props => {
     dataName.toLowerCase().includes(normalizeFilter)
   );
   return (
-    <ul>
+    <ul className={css.list}>
       {visibleContacts.map(({ id, dataName, dataNumber }) => (
-        <li key={id}>
-          {dataName}: {dataNumber}{' '}
-          <button type="submit" id={id} onClick={onClick}>
+        <li className={css.item} key={id}>
+          &#10003; {dataName}: {dataNumber}{' '}
+          <button
+            className={css.contact_btn}
+            type="submit"
+            id={id}
+            onClick={onClick}
+          >
             Delet
           </button>
         </li>
