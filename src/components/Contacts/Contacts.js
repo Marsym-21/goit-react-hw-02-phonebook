@@ -1,14 +1,16 @@
-// import React from 'react';
+import React from 'react';
 
 const Contacts = props => {
-  //   const { contacts } = props;
-  //   console.log(props);
-  return;
-  // {contacts.map(contact => (<ul>
-  //     <li id={contact.id}>{contact.name}</li>
-  // </ul>)
-  // )
-  // }
+  const { contacts } = props;
+  return (
+    <ul>
+      {contacts.map(({ name, id }) => (
+        <li key={id} id={id}>
+          {name}
+        </li>
+      ))}
+    </ul>
+  );
 };
 
 export default Contacts;

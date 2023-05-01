@@ -9,9 +9,9 @@ export class App extends React.Component {
   };
 
   getDataForm = data => {
-    const { contacts } = this.state;
-    this.setState({ contacts: contacts.push(data) });
-    console.log(contacts);
+    this.setState(prevState => ({
+      contacts: [...prevState.contacts, data],
+    }));
   };
 
   render() {
@@ -30,7 +30,7 @@ export class App extends React.Component {
           <h1>PhoneBook</h1>
           <Phonebook onSubmit={this.getDataForm} />
           <h1>Contacts</h1>
-          <Contacts contacts={this.contacts} />
+          <Contacts contacts={this.state.contacts} />
         </div>
       </div>
     );

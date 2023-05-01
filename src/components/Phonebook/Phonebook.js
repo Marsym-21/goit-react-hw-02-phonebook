@@ -12,7 +12,6 @@ class Phonebook extends React.Component {
     const id = nanoid();
     const { name } = this.state;
     let object = { name, id };
-    console.log(object);
     this.props.onSubmit(object);
   };
 
