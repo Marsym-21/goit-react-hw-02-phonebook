@@ -7,23 +7,40 @@ class Phonebook extends React.Component {
     number: '',
   };
 
+  chahgeInputName = evt => {
+    this.setState({ name: evt.currentTarget.value });
+    const checkName = evt.currentTarget.value.toLowerCase();
+    const contacts = this.props.contacts;
+
+    contacts.forEach(({ dataName }) => {
+      if (dataName.toLowerCase() === checkName) {
+        return alert(`${evt.currentTarget.value} is already in contacts`);
+      }
+    });
+  };
+
   handleSubmitName = evt => {
     evt.preventDefault();
-
+    const id = nanoid();
     const { name, number } = evt.target;
-
     const dataName = name.value;
     const dataNumber = number.value;
+    const checkName = dataName.toLowerCase();
+    const contacts = this.props.contacts;
 
-    const id = nanoid();
-
-    let object = { id, dataName, dataNumber };
+    contacts.forEach(({ dataName }) => {
+      if (dataName.toLowerCase() === checkName) {
+        return alert(`${dataName} is already in contacts`);
+      }
+    });
+    const object = { id, dataName, dataNumber };
     this.props.onSubmit(object);
   };
 
   handleChangeName = evt => {
     const { name, value } = evt.target;
     this.setState({ [name]: value });
+    this.chahgeInputName(evt);
   };
 
   render() {
@@ -33,7 +50,7 @@ class Phonebook extends React.Component {
           Name
           <input
             type="text"
-            placeholder="Enter name"
+            placeholder="Enter full name"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"

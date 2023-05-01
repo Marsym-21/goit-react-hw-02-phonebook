@@ -14,6 +14,16 @@ export class App extends React.Component {
     filter: '',
   };
 
+  deletName = evt => {
+    const dataId = evt.target.id;
+    const { contacts } = this.state;
+    const newArray = contacts.filter(contact => contact.id !== dataId);
+    console.log(newArray);
+    this.setState({
+      contacts: [...newArray],
+    });
+  };
+
   chahgeFilter = evt => {
     this.setState({ filter: evt.currentTarget.value });
   };
@@ -38,10 +48,17 @@ export class App extends React.Component {
       >
         <div className="bookcontacts">
           <h1>PhoneBook</h1>
-          <Phonebook onSubmit={this.getDataForm} />
+          <Phonebook
+            onSubmit={this.getDataForm}
+            contacts={this.state.contacts}
+          />
           <h1>Contacts</h1>
           <Filter value={this.state.filter} onChange={this.chahgeFilter} />
-          <Contacts contacts={this.state.contacts} filter={this.state.filter} />
+          <Contacts
+            contacts={this.state.contacts}
+            filter={this.state.filter}
+            onClick={this.deletName}
+          />
         </div>
       </div>
     );
