@@ -1,10 +1,19 @@
 import React from 'react';
+// import PropTypes from 'prop-types';
+// import { nanoid } from 'nanoid';
 import Phonebook from './Phonebook';
+import Contacts from './Contacts';
 export class App extends React.Component {
   state = {
     contacts: [],
-    name: '',
   };
+
+  getDataForm = data => {
+    const { contacts } = this.state;
+    this.setState({ contacts: contacts.push(data) });
+    console.log(contacts);
+  };
+
   render() {
     return (
       <div
@@ -19,7 +28,9 @@ export class App extends React.Component {
       >
         <div className="bookcontacts">
           <h1>PhoneBook</h1>
-          <Phonebook />
+          <Phonebook onSubmit={this.getDataForm} />
+          <h1>Contacts</h1>
+          <Contacts contacts={this.contacts} />
         </div>
       </div>
     );
