@@ -36,8 +36,8 @@ class Phonebook extends React.Component {
     });
     const object = { id, dataName, dataNumber };
     this.props.onSubmit(object);
-    name.value = ' ';
-    number.value = ' ';
+    name.value = '';
+    number.value = '';
   };
 
   handleChangeName = evt => {

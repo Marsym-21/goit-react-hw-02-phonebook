@@ -13,6 +13,17 @@ export class App extends React.Component {
     filter: '',
   };
 
+  componentDidMount() {
+    const localStoradgeData = JSON.parse(localStorage.getItem('contacts'));
+    this.setState({ contacts: localStoradgeData });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
   deletName = evt => {
     const dataId = evt.target.id;
     const { contacts } = this.state;
