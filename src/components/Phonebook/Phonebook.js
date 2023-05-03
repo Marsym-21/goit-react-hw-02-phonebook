@@ -15,7 +15,8 @@ class Phonebook extends React.Component {
 
     contacts.forEach(({ dataName }) => {
       if (dataName.toLowerCase() === checkName) {
-        return alert(`${evt.currentTarget.value} is already in contacts`);
+        alert(`${evt.currentTarget.value} is already in contacts`);
+        return;
       }
     });
   };
@@ -31,7 +32,8 @@ class Phonebook extends React.Component {
 
     contacts.forEach(({ dataName }) => {
       if (dataName.toLowerCase() === checkName) {
-        return alert(`${dataName} is already in contacts`);
+        alert(`${evt.currentTarget.value} is already in contacts`);
+        return;
       }
     });
     const object = { id, dataName, dataNumber };
