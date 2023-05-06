@@ -15,7 +15,9 @@ export class App extends React.Component {
 
   componentDidMount() {
     const localStoradgeData = JSON.parse(localStorage.getItem('contacts'));
-    this.setState({ contacts: localStoradgeData });
+    if (localStoradgeData) {
+      this.setState({ contacts: localStoradgeData });
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
